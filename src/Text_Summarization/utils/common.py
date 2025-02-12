@@ -3,9 +3,9 @@ from box.exceptions import BoxValueError
 import yaml
 from Text_Summarization.logging import logger
 from ensure import ensure_annotations
-from typing import Any
 from pathlib import Path
 from box import ConfigBox
+from typing import Any
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -22,7 +22,7 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
             ConfigBox: a ConfigBox object
             """
     try:
-        with open(path_to_yaml) as yaml_file:
+        with open(path_to_yaml, "r") as yaml_file:
             content = yaml.safe_load(yaml_file)
             logger.info(f"yaml file {path_to_yaml} loaded successfully")
             return ConfigBox(content)

@@ -8,12 +8,9 @@ class DataIngestionTrainingPipeline:
         pass
     
     def main(self):
-        try:
-            config = ConfigurationManager()
-            data_ingestion_config = config.get_data_ingestion_config()
-            data_ingestion = DataIngestion(config= data_ingestion_config)
-            data_ingestion.download_files()
-            data_ingestion.extract_zip_files()
-        except Exception as e:
-            logger.error(f"Training data ingestion failed: {e}")
-            raise e
+        config = ConfigurationManager()
+        data_ingestion_config = config.get_data_ingestion_config()
+        data_ingestion = DataIngestion(config= data_ingestion_config)
+        data_ingestion.download_files()
+        data_ingestion.extract_zip_files()
+        
