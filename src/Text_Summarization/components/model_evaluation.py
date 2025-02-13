@@ -1,5 +1,5 @@
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-from datasets import load_from_disk, load_dataset, load_metric
+from datasets import load_from_disk, load_dataset
 import torch
 import pandas as pd
 from tqdm import tqdm
@@ -40,7 +40,7 @@ class ModelEvaluation:
             decoded_summaries = [tokenizer.decode(s, skip_special_tokens = True, clean_up_tokenization_spaces = True) for s in summaries]
             decoded_summaries = [d.replace("", " ") for d in decoded_summaries]
             
-            
+            metric.add_batch(predictions=decoded_summaries, references=target_batch)
         score = metric.compute()
         return score
     
